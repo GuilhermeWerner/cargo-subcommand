@@ -105,7 +105,8 @@ impl Subcommand {
                 .unwrap_or_else(|| manifest.clone())
                 .parent()
                 .unwrap()
-                .join("target")
+                // Get target dir name from config
+                .join(utils::get_target_dir_name(&root_dir).unwrap())
         });
         if examples {
             for file in utils::list_rust_files(&root_dir.join("examples"))? {
